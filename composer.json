@@ -1,0 +1,11 @@
+{
+    "name": "glerique/game-theory",
+    "autoload": {
+        "psr-4": {"App\\": "src/"}
+    },
+    "require": {
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.3"
+    }
+}
