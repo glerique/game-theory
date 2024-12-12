@@ -10,4 +10,15 @@ class RandomStrategy implements StrategyInterface
     {
         return rand(0, 1) === 0 ? "coopération" : "défection";
     }
+
+    public function getName(): string
+    {
+        return 'Random Strategy';
+    }
+
+    public function getScore(): int
+    {
+        // Implémentez la logique pour obtenir le score de la stratégie
+        return 0; // Remplacez par la logique réelle
+    }
 }
