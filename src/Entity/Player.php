@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
+use App\Interface\StrategyInterface;
+
 class Player
 {
     private string $name;
-    private Strategy $strategy;
+    private StrategyInterface $strategy;
     private int $score = 0;
 
-    public function __construct(string $name, Strategy $strategy)
+    public function __construct(string $name, StrategyInterface $strategy)
     {
         $this->name = $name;
         $this->strategy = $strategy;

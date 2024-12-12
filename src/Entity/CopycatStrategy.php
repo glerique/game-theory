@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
-class CopycattStrategy extends Strategy
+use App\Interface\StrategyInterface;
+
+class CopycattStrategy implements StrategyInterface
 {
     public function chooseAction(array $opponentHistory): string
     {
