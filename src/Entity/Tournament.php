@@ -12,7 +12,7 @@ use App\Entity\Game;
         {
             $this->players = $players;
         }
-
+/*
         public function run(): array
         {
         $results = [];
@@ -25,5 +25,33 @@ use App\Entity\Game;
                 }
             }
             return $results;
+        }
+ */
+        public function run(): array
+        {
+            $results = [];
+            $matchups = $this->generateMatchups($this->players);
+
+            foreach ($matchups as [$player1, $player2]) {
+                $game = new Game($player1, $player2);
+                $game->play();
+                $results[] = $game->getResults();
+            }
+
+            return $results;
+        }
+
+        private function generateMatchups(array $players): array
+        {
+            $matchups = [];
+            $count = count($players);
+
+            for ($i = 0; $i < $count; $i++) {
+                for ($j = $i + 1; $j < $count; $j++) {
+                    $matchups[] = [$players[$i], $players[$j]];
+                }
+            }
+
+            return $matchups;
         }
     }
