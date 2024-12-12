@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
-class RandomStrategy extends Strategy
+use App\Interface\StrategyInterface;
+
+class RandomStrategy implements StrategyInterface
 {
     public function chooseAction(array $opponentHistory): string
     {

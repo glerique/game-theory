@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
-class AlwaysDefectiveStrategy extends Strategy
+use App\Interface\StrategyInterface;
+
+class AlwaysDefectiveStrategy implements StrategyInterface
 {
     public function chooseAction(array $opponentHistory): string
     {
