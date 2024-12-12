@@ -4,7 +4,7 @@ namespace App\Service;
 
 class TournamentRankingService
 {
-    public function generateRanking(array $results): string
+   public function generateRanking(array $results): string
     {
         $ranking = [];
         foreach ($results as $result) {

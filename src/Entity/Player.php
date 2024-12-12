@@ -35,4 +35,9 @@ class Player
     {
         return $this->name;
     }
+
+    public function getStrategy(): string
+    {
+        return $this->strategy->getName();
+    }
 }
