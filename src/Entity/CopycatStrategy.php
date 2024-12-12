@@ -4,8 +4,13 @@ namespace App\Entity;
 
 use App\Interface\StrategyInterface;
 
-class CopycattStrategy implements StrategyInterface
+class CopycatStrategy implements StrategyInterface
 {
+    public function getName(): string
+    {
+        return 'Copycat';
+    }
+
     public function chooseAction(array $opponentHistory): string
     {
         if (empty($opponentHistory)) {
