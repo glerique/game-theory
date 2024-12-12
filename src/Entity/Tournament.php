@@ -26,18 +26,4 @@ use App\Entity\Game;
             }
             return $results;
         }
-
-        public function generateResultsTable(array $results): string        {
-
-            $html = '<table border="1"><tr><th>Player 1</th><th>Score 1</th><th>Player 2</th><th>Score 2</th></tr>';
-            foreach ($results as $result) {
-                $html .= sprintf(
-                    '<tr><td>%s</td><td>%d</td><td>%s</td><td>%d</td></tr>',
-                    $result['player1'], $result['player1_score'],
-                    $result['player2'], $result['player2_score']
-                );
-            }
-            $html .= '</table>';
-            return $html;
-        }
     }

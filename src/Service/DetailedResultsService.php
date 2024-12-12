@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-class DetailedResultService
+class DetailedResultsService
 {
     public function generateDetailedResults(array $results): string
     {

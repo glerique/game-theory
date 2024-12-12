@@ -39,13 +39,13 @@ class Game
 
     private function calculateGains(string $choice1, string $choice2): array
     {
-        if ($choice1 === "coopérer" && $choice2 === "coopérer") {
+        if ($choice1 === "coopération" && $choice2 === "coopération") {
             return [3, 3];
         }
-        if ($choice1 === "coopérer" && $choice2 === "défection") {
+        if ($choice1 === "coopération" && $choice2 === "défection") {
             return [0, 5];
         }
-        if ($choice1 === "défection" && $choice2 === "coopérer") {
+        if ($choice1 === "défection" && $choice2 === "coopération") {
             return [5, 0];
         }
         return [1, 1]; // défection vs défection
