@@ -28,8 +28,9 @@ class TournamentResultService
     {
         $formattedResults = $this->generateResults($results);
 
-        $table = '<table border="1">';
-        $table .= '<tr><th>Player 1</th><th>Player 2</th><th>Score 1</th><th>Score 2</th></tr>';
+        $table = '<table class="table table-bordered">';
+        $table .= '<thead class="thead-dark"><tr><th>Player 1</th><th>Player 2</th><th>Score 1</th><th>Score 2</th></tr></thead>';
+        $table .= '<tbody>';
 
         foreach ($formattedResults as $result) {
             $table .= sprintf(
@@ -41,7 +42,7 @@ class TournamentResultService
             );
         }
 
-        $table .= '</table>';
+        $table .= '</tbody></table>';
         return $table;
     }
 }

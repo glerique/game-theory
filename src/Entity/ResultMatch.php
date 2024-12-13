@@ -46,4 +46,14 @@ class ResultMatch
     {
         return array_sum($this->gainsPlayer2);
     }
+
+    public function getGainsPlayer1(): array
+    {
+        return $this->gainsPlayer1;
+    }
+
+    public function getGainsPlayer2(): array
+    {
+        return $this->gainsPlayer2;
+    }
 }
