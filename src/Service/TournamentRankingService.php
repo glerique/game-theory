@@ -2,20 +2,28 @@
 
 namespace App\Service;
 
+use App\Entity\ResultMatch;
+
 class TournamentRankingService
 {
-   public function generateRanking(array $results): string
+    public function generateRanking(array $results): string
     {
         $ranking = [];
+
+        /** @var ResultMatch $result */
         foreach ($results as $result) {
-            if (!isset($ranking[$result['player1']])) {
-                $ranking[$result['player1']] = 0;
+            $player1Name = $result->getPlayer1()->getName();
+            $player2Name = $result->getPlayer2()->getName();
+
+            if (!isset($ranking[$player1Name])) {
+                $ranking[$player1Name] = 0;
             }
-            if (!isset($ranking[$result['player2']])) {
-                $ranking[$result['player2']] = 0;
+            if (!isset($ranking[$player2Name])) {
+                $ranking[$player2Name] = 0;
             }
-            $ranking[$result['player1']] += $result['player1_score'];
-            $ranking[$result['player2']] += $result['player2_score'];
+
+            $ranking[$player1Name] += $result->getScorePlayer1();
+            $ranking[$player2Name] += $result->getScorePlayer2();
         }
 
         arsort($ranking);

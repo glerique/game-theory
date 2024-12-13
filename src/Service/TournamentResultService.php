@@ -2,53 +2,46 @@
 
 namespace App\Service;
 
-use App\Entity\Tournament;
+use App\Entity\ResultMatch;
 
 class TournamentResultService
 {
-    private Tournament $tournament;
-
-    public function __construct(Tournament $tournament)
+    public function generateResults(array $results): array
     {
-        $this->tournament = $tournament;
+        $formattedResults = [];
+
+        /** @var ResultMatch $result */
+        foreach ($results as $result) {
+            $formattedResults[] = [
+                'player1' => $result->getPlayer1()->getName(),
+                'player2' => $result->getPlayer2()->getName(),
+                'player1_score' => $result->getScorePlayer1(),
+                'player2_score' => $result->getScorePlayer2(),
+
+            ];
+        }
+
+        return $formattedResults;
     }
 
     public function generateResultsTable(array $results): string
     {
-        $table = '<table border="1"><tr><th>Player 1</th><th>Score 1</th><th>Player 2</th><th>Score 2</th></tr>';
-        foreach ($results as $result) {
+        $formattedResults = $this->generateResults($results);
+
+        $table = '<table border="1">';
+        $table .= '<tr><th>Player 1</th><th>Player 2</th><th>Score 1</th><th>Score 2</th></tr>';
+
+        foreach ($formattedResults as $result) {
             $table .= sprintf(
-                '<tr><td>%s</td><td>%d</td><td>%s</td><td>%d</td></tr>',
-                $result['player1'], $result['player1_score'],
-                $result['player2'], $result['player2_score']
+                '<tr><td>%s</td><td>%s</td><td>%d</td><td>%d</td></tr>',
+                $result['player1'],
+                $result['player2'],
+                $result['player1_score'],
+                $result['player2_score']
             );
         }
+
         $table .= '</table>';
-        return $table;
-    }
-
-    public function generateRankingTable(array $results): string
-    {
-        $ranking = [];
-        foreach ($results as $result) {
-            if (!isset($ranking[$result['player1']])) {
-                $ranking[$result['player1']] = 0;
-            }
-            if (!isset($ranking[$result['player2']])) {
-                $ranking[$result['player2']] = 0;
-            }
-            $ranking[$result['player1']] += $result['player1_score'];
-            $ranking[$result['player2']] += $result['player2_score'];
-        }
-
-        arsort($ranking);
-
-        $table = '<table border="1"><tr><th>Player</th><th>Score</th></tr>';
-        foreach ($ranking as $player => $score) {
-            $table .= sprintf('<tr><td>%s</td><td>%d</td></tr>', $player, $score);
-        }
-        $table .= '</table>';
-
         return $table;
     }
 }
