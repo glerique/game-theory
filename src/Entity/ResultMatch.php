@@ -4,14 +4,17 @@ namespace App\Entity;
 
 class ResultMatch
 {
-    public function __construct(
+
+
+        public function __construct(
         private readonly Player $player1,
         private readonly Player $player2,
         private readonly array $historyPlayer1,
         private readonly array $historyPlayer2,
-        private readonly array $gainsPlayer1,
-        private readonly array $gainsPlayer2,
-        private readonly int $totalScorePlayer1
+        private $totalScorePlayer1,
+        private $totalScorePlayer2,
+        private $gainsPlayer1,
+        private $gainsPlayer2,
     ) {}
 
     public function getPlayer1(): Player
