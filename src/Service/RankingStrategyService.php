@@ -28,11 +28,13 @@ class RankingStrategyService
 
         arsort($ranking);
 
-        $table = '<table border="1"><tr><th>Stratégie</th><th>Score</th></tr>';
+        $table = '<table class="table table-bordered">';
+        $table .= '<thead class="thead-dark"><tr><th>Stratégie</th><th>Score</th></tr></thead>';
+        $table .= '<tbody>';
         foreach ($ranking as $strategy => $score) {
             $table .= sprintf('<tr><td>%s</td><td>%d</td></tr>', $strategy, $score);
         }
-        $table .= '</table>';
+        $table .= '</tbody></table>';
 
         return $table;
     }
