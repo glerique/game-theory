@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\ResultMatch;
+
 class Game
 {
     private Player $player1;
@@ -76,27 +78,21 @@ class Game
             return self::PAYOFF_MATRIX[$index];
         }
 
-
-
-
     private function isValidChoice(string $choice): bool
     {
         return in_array($choice, [self::CHOICE_COOPERATION, self::CHOICE_DEFECTION], true);
     }
 
-    public function getResults(): array
+    public function getResults(): ResultMatch
     {
-        return [
-            'player1' => $this->player1->getName(),
-            'strategy1' => $this->player1->getStrategy(),
-            'player1_score' => array_sum($this->gainsPlayer1),
-            'player2' => $this->player2->getName(),
-            'strategy2' => $this->player2->getStrategy(),
-            'player2_score' => array_sum($this->gainsPlayer2),
-            'history_player1' => $this->historyPlayer1,
-            'history_player2' => $this->historyPlayer2,
-            'gains_player1' => $this->gainsPlayer1,
-            'gains_player2' => $this->gainsPlayer2,
-        ];
+        return new ResultMatch(
+            $this->player1,
+            $this->player2,
+            $this->historyPlayer1,
+            $this->historyPlayer2,
+            $this->gainsPlayer1,
+            $this->gainsPlayer2,
+            array_sum($this->gainsPlayer1)
+        );
     }
 }
